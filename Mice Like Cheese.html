@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mice Like Cheese</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SimSun', serif;
+            background-color: #f5f2e9;
+            background-image: url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 200c0 0 50-50 100-50s100 50 100 50v200c0 0-50 50-100 50s-100-50-100-50V200zm200 0c0 0 50-50 100-50s100 50 100 50v200c0 0-50 50-100 50s-100-50-100-50V200zm200 0c0 0 50-50 100-50s100 50 100 50v200c0 0-50 50-100 50s-100-50-100-50V200z' fill='%23d4c8b0' fill-opacity='0.1'/%3E%3Cpath d='M150 150c0 0 50-25 100-25s100 25 100 25v250c0 0-50 25-100 25s-100-25-100-25V150zm200 0c0 0 50-25 100-25s100 25 100 25v250c0 0-50 25-100 25s-100-25-100-25V150z' fill='%23b8a990' fill-opacity='0.05'/%3E%3Cpath d='M200 100c0 0 50-25 100-25s100 25 100 25v300c0 0-50 25-100 25s-100-25-100-25V100zm200 0c0 0 50-25 100-25s100 25 100 25v300c0 0-50 25-100 25s-100-25-100-25V100z' fill='%238b7355' fill-opacity='0.03'/%3E%3C/svg%3E");
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* 背景装饰元素 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50c10 0 20-5 20-10s-10-10-20-10-20 5-20 10 10 10 20 10zm50 0c10 0 20-5 20-10s-10-10-20-10-20 5-20 10 10 10 20 10zm50 0c10 0 20-5 20-10s-10-10-20-10-20 5-20 10 10 10 20 10zm0 50c10 0 20-5 20-10s-10-10-20-10-20 5-20 10 10 10 20 10zm-50 0c10 0 20-5 20-10s-10-10-20-10-20 5-20 10 10 10 20 10zm-50 0c10 0 20-5 20-10s-10-10-20-10-20 5-20 10 10 10 20 10zm0 50c10 0 20-5 20-10s-10-10-20-10-20 5-20 10 10 10 20 10zm50 0c10 0 20-5 20-10s-10-10-20-10-20 5-20 10 10 10 20 10zm50 0c10 0 20-5 20-10s-10-10-20-10-20 5-20 10 10 10 20 10z' fill='%23d4c8b0' fill-opacity='0.05'/%3E%3Cpath d='M30 30c5 0 10-2.5 10-5s-5-5-10-5-10 2.5-10 5 5 5 10 5zm40 0c5 0 10-2.5 10-5s-5-5-10-5-10 2.5-10 5 5 5 10 5zm40 0c5 0 10-2.5 10-5s-5-5-10-5-10 2.5-10 5 5 5 10 5zm40 40c5 0 10-2.5 10-5s-5-5-10-5-10 2.5-10 5 5 5 10 5zm-40 0c5 0 10-2.5 10-5s-5-5-10-5-10 2.5-10 5 5 5 10 5zm-40 0c5 0 10-2.5 10-5s-5-5-10-5-10 2.5-10 5 5 5 10 5zm-40 40c5 0 10-2.5 10-5s-5-5-10-5-10 2.5-10 5 5 5 10 5zm40 0c5 0 10-2.5 10-5s-5-5-10-5-10 2.5-10 5 5 5 10 5zm40 0c5 0 10-2.5 10-5s-5-5-10-5-10 2.5-10 5 5 5 10 5zm40 40c5 0 10-2.5 10-5s-5-5-10-5-10 2.5-10 5 5 5 10 5zm-40 0c5 0 10-2.5 10-5s-5-5-10-5-10 2.5-10 5 5 5 10 5zm-40 0c5 0 10-2.5 10-5s-5-5-10-5-10 2.5-10 5 5 5 10 5z' fill='%23b8a990' fill-opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        /* 江南风格装饰元素 */
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 100Q150 50 200 100Q250 150 300 100Q350 50 400 100' stroke='%23d4c8b0' stroke-width='1' fill='none' opacity='0.1'/%3E%3Cpath d='M0 200Q50 150 100 200Q150 250 200 200Q250 150 300 200Q350 250 400 200' stroke='%23d4c8b0' stroke-width='1' fill='none' opacity='0.1'/%3E%3Cpath d='M100 300Q150 250 200 300Q250 350 300 300Q350 250 400 300' stroke='%23d4c8b0' stroke-width='1' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+            z-index: -1;
+        }
+        
+        /* 游戏容器 */
+        .game-container {
+            max-width: 1000px;
+            width: 100%;
+            background-color: rgba(255, 252, 240, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        /* 游戏标题 */
+        .game-title {
+            font-size: 2.5rem;
+            color: #5a4b3c;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+        }
+        
+        /* 游戏控制区域 */
+        .game-controls {
+            margin-bottom: 20px;
+        }
+        
+        /* 难度按钮 */
+        .difficulty-buttons {
+            margin-bottom: 15px;
+        }
+        
+        .difficulty-btn {
+            background-color: #e8ddcb;
+            border: 2px solid #b8a990;
+            color: #5a4b3c;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'SimSun', serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .difficulty-btn:hover {
+            background-color: #d4c8b0;
+            transform: translateY(-2px);
+        }
+        
+        .difficulty-btn.active {
+            background-color: #b8a990;
+            color: #fff;
+        }
+        
+        /* 游戏状态 */
+        .game-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f0e8d8;
+            border-radius: 4px;
+            border: 1px solid #d4c8b0;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .stat-label {
+            font-weight: bold;
+            color: #5a4b3c;
+        }
+        
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #8b7355;
+        }
+        
+        /* 重置按钮 */
+        .reset-btn {
+            background-color: #e8ddcb;
+            border: 2px solid #b8a990;
+            color: #5a4b3c;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'SimSun', serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .reset-btn:hover {
+            background-color: #d4c8b0;
+            transform: translateY(-2px);
+        }
+        
+        /* 游戏棋盘 */
+        .game-board {
+            display: inline-block;
+            border: 3px solid #b8a990;
+            border-radius: 4px;
+            padding: 5px;
+            background-color: #f0e8d8;
+            margin-bottom: 20px;
+        }
+        
+        /* 游戏行 */
+        .game-row {
+            display: flex;
+        }
+        
+        /* 游戏格子 */
+        .game-cell {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #d4c8b0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background-color: #faf7f0;
+            transition: all 0.2s ease;
+            position: relative;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .game-cell:hover {
+            background-color: #f0e8d8;
+        }
+        
+        .game-cell.revealed {
+            background-color: #e8ddcb;
+            cursor: default;
+            box-shadow: none;
+        }
+        
+        .game-cell.flagged {
+            background-color: #f0e8d8;
+        }
+        
+        /* 数字样式 */
+        .game-cell .number {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .game-cell .number-1 { color: #2c5aa0; }
+        .game-cell .number-2 { color: #2e8b57; }
+        .game-cell .number-3 { color: #cd5c5c; }
+        .game-cell .number-4 { color: #483d8b; }
+        .game-cell .number-5 { color: #8b4513; }
+        .game-cell .number-6 { color: #20b2aa; }
+        .game-cell .number-7 { color: #000000; }
+        .game-cell .number-8 { color: #808080; }
+        
+        /* 捕兽夹样式 */
+        .game-cell .trap {
+            width: 24px;
+            height: 24px;
+            position: relative;
+        }
+        
+        .game-cell .trap::before,
+        .game-cell .trap::after {
+            content: '';
+            position: absolute;
+            background-color: #5a4b3c;
+            border-radius: 2px;
+        }
+        
+        /* 捕兽夹底座 */
+        .game-cell .trap::before {
+            width: 20px;
+            height: 4px;
+            top: 16px;
+            left: 2px;
+            transform: rotate(-5deg);
+        }
+        
+        /* 捕兽夹上半部分 */
+        .game-cell .trap::after {
+            width: 4px;
+            height: 18px;
+            top: 2px;
+            left: 10px;
+            transform: rotate(10deg);
+        }
+        
+        /* 捕兽夹锯齿 */
+        .game-cell .trap span {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #8b7355;
+            border-radius: 50%;
+            top: 10px;
+            left: 8px;
+        }
+        
+        /* 捕兽夹细节 */
+        .game-cell .trap span::before,
+        .game-cell .trap span::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 6px;
+            background-color: #5a4b3c;
+            top: -8px;
+        }
+        
+        .game-cell .trap span::before {
+            left: 1px;
+            transform: rotate(-30deg);
+        }
+        
+        .game-cell .trap span::after {
+            right: 1px;
+            transform: rotate(30deg);
+        }
+        
+        /* 旗子样式 */
+        .game-cell .flag {
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 12px solid #cd5c5c;
+            position: relative;
+        }
+        
+        .game-cell .flag::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 16px;
+            background-color: #8b4513;
+            top: 12px;
+            left: -1px;
+        }
+        
+        /* 确保旗子不超出格子 */
+        .game-cell {
+            overflow: hidden;
+        }
+        
+        /* 奶酪样式 */
+        .game-cell .cheese {
+            width: 20px;
+            height: 20px;
+            background-color: #ffd700;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+        }
+        
+        .game-cell .cheese::before,
+        .game-cell .cheese::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #ffd700;
+            border-radius: 50%;
+        }
+        
+        .game-cell .cheese::before {
+            top: -3px;
+            left: 3px;
+        }
+        
+        .game-cell .cheese::after {
+            top: -3px;
+            right: 3px;
+        }
+        
+        /* 游戏消息 */
+        .game-message {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            min-height: 24px;
+        }
+        
+        .game-message.win {
+            color: #2e8b57;
+        }
+        
+        .game-message.lose {
+            color: #cd5c5c;
+        }
+        
+        /* 胜利动画 */
+        .victory-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(245, 242, 233, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .victory-animation.show {
+            display: flex;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        /* 胜利动画内容 */
+        .victory-content {
+            text-align: center;
+            z-index: 1001;
+        }
+        
+        /* 小老鼠抱奶酪 */
+        .mouse-with-cheese {
+            position: relative;
+            width: 150px;
+            height: 120px;
+            margin: 0 auto 30px;
+            animation: mouseAppear 1s ease-out forwards;
+        }
+        
+        .mouse-body {
+            width: 60px;
+            height: 50px;
+            background-color: #ffffff;
+            border: 2px solid #333333;
+            border-radius: 50% 50% 50% 50%;
+            position: absolute;
+            bottom: 20px;
+            left: 45px;
+        }
+        
+        .mouse-ear {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: #ffffff;
+            border: 2px solid #333333;
+            border-radius: 50%;
+            top: 10px;
+        }
+        
+        .mouse-ear.left {
+            left: 35px;
+            transform: rotate(-45deg);
+        }
+        
+        .mouse-ear.right {
+            right: 35px;
+            transform: rotate(45deg);
+        }
+        
+        .mouse-eye {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #000000;
+            border-radius: 50%;
+            top: 40px;
+        }
+        
+        .mouse-eye.left {
+            left: 55px;
+        }
+        
+        .mouse-eye.right {
+            right: 55px;
+        }
+        
+        .mouse-nose {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #000000;
+            border-radius: 50%;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .mouse-tail {
+            position: absolute;
+            width: 4px;
+            height: 35px;
+            background-color: #333333;
+            border-radius: 2px;
+            bottom: 25px;
+            right: 30px;
+            transform: rotate(60deg);
+        }
+        
+        .cheese {
+            position: absolute;
+            width: 40px;
+            height: 30px;
+            background-color: #ffd700;
+            border: 2px solid #333333;
+            border-radius: 10px;
+            top: 35px;
+            left: 20px;
+            animation: cheeseBounce 1s ease-in-out infinite;
+        }
+        
+        .cheese-hole {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #ffffff;
+            border-radius: 50%;
+        }
+        
+        .cheese-hole:nth-child(1) {
+            top: 5px;
+            left: 8px;
+        }
+        
+        .cheese-hole:nth-child(2) {
+            top: 15px;
+            left: 20px;
+        }
+        
+        .cheese-hole:nth-child(3) {
+            top: 8px;
+            right: 8px;
+        }
+        
+        /* 粒子 */
+        .particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: #ffd700;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            animation: particleExplosion 2s ease-out forwards;
+        }
+        
+        /* 动画 */
+        @keyframes mouseAppear {
+            0% {
+                transform: scale(0) translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes cheeseBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        @keyframes particleExplosion {
+            0% {
+                transform: scale(1) translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0) translate(var(--tx), var(--ty));
+                opacity: 0;
+            }
+        }
+        
+        /* 游戏记录 */
+        .game-records {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f0e8d8;
+            border-radius: 4px;
+            border: 1px solid #d4c8b0;
+        }
+        
+        .game-records h3 {
+            margin-bottom: 10px;
+            color: #5a4b3c;
+            font-family: 'SimSun', serif;
+        }
+        
+        .record-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #faf7f0;
+            border-radius: 4px;
+        }
+        
+        .record-difficulty {
+            font-weight: bold;
+            color: #5a4b3c;
+        }
+        
+        .record-time {
+            color: #8b7355;
+        }
+        
+        .crown {
+            color: #ffd700;
+            margin-left: 10px;
+        }
+        
+        /* 再来一局按钮 */
+        .play-again-btn {
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: #e8ddcb;
+            border: 2px solid #b8a990;
+            color: #5a4b3c;
+            border-radius: 4px;
+            font-family: 'SimSun', serif;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .play-again-btn:hover {
+            background-color: #d4c8b0;
+            transform: translateY(-2px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* 小老鼠拿着奶酪动画 */
+        .mouse-with-cheese {
+            position: relative;
+            width: 120px;
+            height: 100px;
+            animation: mouseCelebrate 3s ease-in-out infinite;
+        }
+        
+        /* 失落小老鼠动画 */
+        .mouse-sad {
+            position: relative;
+            width: 120px;
+            height: 100px;
+            animation: mouseSad 2s ease-in-out infinite;
+        }
+        
+        .mouse-body {
+            width: 50px;
+            height: 45px;
+            background-color: #ffffff;
+            border: 2px solid #333333;
+            border-radius: 50% 50% 50% 50%;
+            position: absolute;
+            bottom: 15px;
+            left: 35px;
+        }
+        
+        .mouse-ear {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ffffff;
+            border: 2px solid #333333;
+            border-radius: 50%;
+            top: 10px;
+        }
+        
+        .mouse-ear.left {
+            left: 30px;
+            transform: rotate(-45deg);
+        }
+        
+        .mouse-ear.right {
+            right: 30px;
+            transform: rotate(45deg);
+        }
+        
+        .mouse-eye {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #000000;
+            border-radius: 50%;
+            top: 35px;
+        }
+        
+        .mouse-eye.left {
+            left: 40px;
+        }
+        
+        .mouse-eye.right {
+            right: 40px;
+        }
+        
+        /* 失落的眼睛 */
+        .mouse-eye.sad {
+            width: 10px;
+            height: 3px;
+            border-radius: 3px;
+        }
+        
+        .mouse-nose {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #000000;
+            border-radius: 50%;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .mouse-tail {
+            position: absolute;
+            width: 30px;
+            height: 4px;
+            background-color: #333333;
+            border-radius: 2px;
+            bottom: 25px;
+            right: 10px;
+            transform: rotate(60deg);
+        }
+        
+        /* 失落的尾巴 */
+        .mouse-sad .mouse-tail {
+            animation: tailSad 1s ease-in-out infinite;
+        }
+        
+        .mouse-cheese {
+            position: absolute;
+            width: 35px;
+            height: 25px;
+            background-color: #ffd700;
+            border: 2px solid #333333;
+            border-radius: 5px;
+            top: 30px;
+            left: 15px;
+            animation: cheeseBounce 1s ease-in-out infinite;
+        }
+        
+        .mouse-cheese::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+        }
+        
+        .mouse-cheese::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            top: 5px;
+            right: 5px;
+        }
+        
+        @keyframes mouseCelebrate {
+            0%, 100% { 
+                transform: translateX(0) rotate(0deg); 
+            }
+            25% { 
+                transform: translateX(10px) rotate(5deg); 
+            }
+            50% { 
+                transform: translateX(0) rotate(0deg); 
+            }
+            75% { 
+                transform: translateX(-10px) rotate(-5deg); 
+            }
+        }
+        
+        @keyframes mouseSad {
+            0%, 100% { 
+                transform: translateY(0); 
+            }
+            50% { 
+                transform: translateY(10px); 
+            }
+        }
+        
+        @keyframes tailSad {
+            0%, 100% { 
+                transform: rotate(60deg); 
+            }
+            50% { 
+                transform: rotate(40deg); 
+            }
+        }
+        
+        @keyframes cheeseBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        @keyframes tailWiggle {
+            0%, 100% { 
+                transform: rotate(60deg); 
+            }
+            50% { 
+                transform: rotate(70deg); 
+            }
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .game-title {
+                font-size: 1.8rem;
+            }
+            
+            .game-container {
+                padding: 10px;
+            }
+            
+            .difficulty-btn {
+                padding: 6px 12px;
+                margin: 0 3px;
+                font-size: 12px;
+            }
+            
+            .game-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .stat-item {
+                flex: 1;
+                justify-content: center;
+            }
+            
+            .game-cell {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .game-cell .number {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .game-title {
+                font-size: 1.5rem;
+            }
+            
+            .difficulty-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 5px;
+            }
+            
+            .game-cell {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .game-cell .number {
+                font-size: 12px;
+            }
+            
+            .play-again-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+        
+        /* 触摸设备适配 */
+        @media (hover: none) {
+            .game-cell:hover {
+                background-color: #faf7f0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="game-title">Mouse Like Cheese</h1>
+        
+        <div class="game-controls">
+            <div class="difficulty-buttons">
+                <button id="beginner" class="difficulty-btn">初级 (9×9/10夹)</button>
+                <button id="intermediate" class="difficulty-btn">中级 (16×16/40夹)</button>
+                <button id="expert" class="difficulty-btn">高级 (16×30/99夹)</button>
+                <button id="nightmare" class="difficulty-btn">极难 (24×32/190夹)</button>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat-item">
+                    <span class="stat-label">剩余陷阱:</span>
+                    <span id="mine-count" class="stat-value">10</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">时间:</span>
+                    <span id="timer" class="stat-value">0</span>
+                </div>
+                <button id="reset-btn" class="reset-btn">重置游戏</button>
+            </div>
+        </div>
+        
+        <div id="game-board" class="game-board"></div>
+        
+        <div id="game-message" class="game-message"></div>
+        
+        <div id="game-records" class="game-records"></div>
+        
+        <div id="victory-animation" class="victory-animation">
+            <div class="victory-content">
+                <div class="mouse-with-cheese">
+                    <div class="mouse-body"></div>
+                    <div class="mouse-ear left"></div>
+                    <div class="mouse-ear right"></div>
+                    <div class="mouse-eye left"></div>
+                    <div class="mouse-eye right"></div>
+                    <div class="mouse-nose"></div>
+                    <div class="mouse-tail"></div>
+                    <div class="cheese">
+                        <div class="cheese-hole"></div>
+                        <div class="cheese-hole"></div>
+                        <div class="cheese-hole"></div>
+                    </div>
+                </div>
+                <div class="game-result" style="margin: 20px 0; font-size: 18px; font-weight: bold;"></div>
+                <button id="play-again-btn" class="play-again-btn" style="display: none;">再来一局</button>
+            </div>
+        </div>
+        
+        <div id="defeat-animation" class="victory-animation">
+            <div class="victory-content">
+                <div class="mouse-sad">
+                    <div class="mouse-body"></div>
+                    <div class="mouse-ear left"></div>
+                    <div class="mouse-ear right"></div>
+                    <div class="mouse-eye left sad"></div>
+                    <div class="mouse-eye right sad"></div>
+                    <div class="mouse-nose"></div>
+                    <div class="mouse-tail"></div>
+                </div>
+                <button id="play-again-btn-defeat" class="play-again-btn" style="display: none;">再来一局</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 游戏变量
+        let gameBoard = [];
+        let rows = 9;
+        let cols = 9;
+        let totalTraps = 10;
+        let revealedCells = 0;
+        let flaggedCells = 0;
+        let gameStarted = false;
+        let gameOver = false;
+        let timerInterval = null;
+        let timeElapsed = 0;
+        let audioContext = null;
+        
+        // 游戏记录
+        let gameRecords = JSON.parse(localStorage.getItem('mouseCheeseRecords')) || {
+            beginner: Infinity,
+            intermediate: Infinity,
+            expert: Infinity,
+            nightmare: Infinity
+        };
+        
+        // 初始化音频上下文
+        function initAudio() {
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            } catch (e) {
+                console.log('Web Audio API not supported');
+            }
+        }
+        
+        // 播放音效
+        function playSound(frequency, duration, type) {
+            if (!audioContext) return;
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = type || 'sine';
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+        
+        // 播放数字音效
+        function playNumberSound(number) {
+            const frequencies = [262, 294, 330, 349, 392, 440, 494, 523]; // C4 to C5
+            playSound(frequencies[number - 1], 0.1, 'sine');
+        }
+        
+        // 播放踩雷音效
+        function playTrapSound() {
+            playSound(110, 0.5, 'sawtooth');
+        }
+        
+        // 播放标记音效
+        function playFlagSound() {
+            playSound(330, 0.1, 'sine');
+        }
+        
+        // 播放胜利音效
+        function playWinSound() {
+            const frequencies = [523, 659, 784, 1047]; // C5, E5, G5, C6
+            frequencies.forEach((freq, index) => {
+                setTimeout(() => playSound(freq, 0.2), index * 150);
+            });
+        }
+        
+        // DOM元素
+        const gameBoardElement = document.getElementById('game-board');
+        const mineCountElement = document.getElementById('mine-count');
+        const timerElement = document.getElementById('timer');
+        const gameMessageElement = document.getElementById('game-message');
+        const gameRecordsElement = document.getElementById('game-records');
+        const resetButton = document.getElementById('reset-btn');
+        const victoryAnimation = document.getElementById('victory-animation');
+        const playAgainButton = document.getElementById('play-again-btn');
+        const defeatAnimation = document.getElementById('defeat-animation');
+        const playAgainButtonDefeat = document.getElementById('play-again-btn-defeat');
+        const difficultyButtons = document.querySelectorAll('.difficulty-btn');
+        
+        // 初始化游戏
+        function initGame() {
+            // 初始化音频
+            initAudio();
+            
+            // 重置游戏状态
+            gameBoard = [];
+            revealedCells = 0;
+            flaggedCells = 0;
+            gameStarted = false;
+            gameOver = false;
+            timeElapsed = 0;
+            
+            // 重置DOM元素
+            gameBoardElement.innerHTML = '';
+            mineCountElement.textContent = totalTraps;
+            timerElement.textContent = '0';
+            gameMessageElement.textContent = '';
+            gameMessageElement.className = 'game-message';
+            victoryAnimation.classList.remove('show');
+            defeatAnimation.classList.remove('show');
+            
+            // 显示游戏记录
+            displayGameRecords();
+            
+            // 清除计时器
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            
+            // 创建游戏棋盘
+            for (let i = 0; i < rows; i++) {
+                const row = [];
+                const rowElement = document.createElement('div');
+                rowElement.className = 'game-row';
+                
+                for (let j = 0; j < cols; j++) {
+                    const cell = {
+                        isTrap: false,
+                        isRevealed: false,
+                        isFlagged: false,
+                        adjacentTraps: 0
+                    };
+                    row.push(cell);
+                    
+                    const cellElement = document.createElement('div');
+                    cellElement.className = 'game-cell';
+                    cellElement.dataset.row = i;
+                    cellElement.dataset.col = j;
+                    
+                    // 添加点击事件
+                    cellElement.addEventListener('click', handleCellClick);
+                    cellElement.addEventListener('contextmenu', handleCellRightClick);
+                    
+                    // 添加触摸事件，实现手机端长按标记
+                    let touchTimer;
+                    cellElement.addEventListener('touchstart', function(e) {
+                        touchTimer = setTimeout(function() {
+                            // 长按触发标记功能
+                            handleCellRightClick(e);
+                        }, 500); // 500ms长按
+                    });
+                    cellElement.addEventListener('touchend', function() {
+                        clearTimeout(touchTimer);
+                    });
+                    cellElement.addEventListener('touchmove', function() {
+                        clearTimeout(touchTimer);
+                    });
+                    
+                    rowElement.appendChild(cellElement);
+                }
+                
+                gameBoard.push(row);
+                gameBoardElement.appendChild(rowElement);
+            }
+        }
+        
+        // 生成陷阱
+        function generateTraps(firstClickRow, firstClickCol) {
+            let isSolvable = false;
+            let attempts = 0;
+            const maxAttempts = 100; // 最大尝试次数
+            
+            while (!isSolvable && attempts < maxAttempts) {
+                // 重置游戏棋盘
+                resetBoard();
+                
+                let trapsPlaced = 0;
+                
+                while (trapsPlaced < totalTraps) {
+                    const randomRow = Math.floor(Math.random() * rows);
+                    const randomCol = Math.floor(Math.random() * cols);
+                    
+                    // 确保第一个点击的位置不是陷阱，但允许在周围放置陷阱
+                    if (!gameBoard[randomRow][randomCol].isTrap && 
+                        !(randomRow === firstClickRow && randomCol === firstClickCol)) {
+                        
+                        gameBoard[randomRow][randomCol].isTrap = true;
+                        trapsPlaced++;
+                        
+                        // 更新周围格子的相邻陷阱数
+                        updateAdjacentTraps(randomRow, randomCol);
+                    }
+                }
+                
+                // 检查生成的棋盘是否可解
+                isSolvable = checkSolvability();
+                attempts++;
+            }
+            
+            // 如果多次尝试后仍然无法生成可解的棋盘，至少确保第一个点击的位置不是陷阱
+            if (!isSolvable) {
+                console.log('无法生成完全可解的棋盘，使用当前生成的棋盘');
+            }
+        }
+        
+        // 重置游戏棋盘
+        function resetBoard() {
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    gameBoard[i][j] = {
+                        isTrap: false,
+                        isRevealed: false,
+                        isFlagged: false,
+                        adjacentTraps: 0
+                    };
+                }
+            }
+        }
+        
+        // 检查棋盘是否可解
+        function checkSolvability() {
+            // 创建一个模拟棋盘，用于检查可解性
+            const simulationBoard = [];
+            for (let i = 0; i < rows; i++) {
+                const row = [];
+                for (let j = 0; j < cols; j++) {
+                    row.push({
+                        isTrap: gameBoard[i][j].isTrap,
+                        isRevealed: false,
+                        isFlagged: false,
+                        adjacentTraps: gameBoard[i][j].adjacentTraps
+                    });
+                }
+                simulationBoard.push(row);
+            }
+            
+            // 模拟揭示过程，从边缘开始
+            let revealedCount = 0;
+            const totalSafeCells = rows * cols - totalTraps;
+            
+            // 首先揭示所有边缘的空白格子
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    if ((i === 0 || i === rows - 1 || j === 0 || j === cols - 1) && 
+                        !simulationBoard[i][j].isTrap && 
+                        simulationBoard[i][j].adjacentTraps === 0) {
+                        revealSimulationCell(simulationBoard, i, j);
+                    }
+                }
+            }
+            
+            // 计算揭示的安全格子数量
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    if (simulationBoard[i][j].isRevealed && !simulationBoard[i][j].isTrap) {
+                        revealedCount++;
+                    }
+                }
+            }
+            
+            // 如果揭示的安全格子数量达到总安全格子数量的90%以上，认为棋盘是可解的
+            return revealedCount >= totalSafeCells * 0.9;
+        }
+        
+        // 模拟揭示单元格
+        function revealSimulationCell(simulationBoard, row, col) {
+            if (row < 0 || row >= rows || col < 0 || col >= cols || 
+                simulationBoard[row][col].isRevealed || simulationBoard[row][col].isTrap) {
+                return;
+            }
+            
+            simulationBoard[row][col].isRevealed = true;
+            
+            if (simulationBoard[row][col].adjacentTraps === 0) {
+                // 递归揭示周围单元格
+                for (let i = -1; i <= 1; i++) {
+                    for (let j = -1; j <= 1; j++) {
+                        revealSimulationCell(simulationBoard, row + i, col + j);
+                    }
+                }
+            }
+        }
+        
+        // 更新相邻陷阱数
+        function updateAdjacentTraps(row, col) {
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    const newRow = row + i;
+                    const newCol = col + j;
+                    
+                    if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
+                        gameBoard[newRow][newCol].adjacentTraps++;
+                    }
+                }
+            }
+        }
+        
+        // 处理单元格点击
+        function handleCellClick(e) {
+            // 确保获取到单元格元素，即使点击的是单元格内的子元素
+            const cellElement = e.target.closest('.game-cell');
+            if (!cellElement) return;
+            
+            const row = parseInt(cellElement.dataset.row);
+            const col = parseInt(cellElement.dataset.col);
+            const cell = gameBoard[row][col];
+            
+            // 如果游戏结束或单元格已标记，不做处理
+            if (gameOver || cell.isFlagged) {
+                return;
+            }
+            
+            // 如果是已揭示的数字单元格，检查是否可以自动翻开周围格子
+            if (cell.isRevealed && cell.adjacentTraps > 0) {
+                const flaggedCount = countAdjacentFlags(row, col);
+                if (flaggedCount === cell.adjacentTraps) {
+                    // 自动翻开周围未翻开的格子
+                    revealAdjacentCells(row, col);
+                    // 检查是否胜利
+                    checkWinCondition();
+                }
+                return;
+            }
+            
+            // 如果是第一次点击，开始游戏并生成陷阱
+            if (!gameStarted) {
+                gameStarted = true;
+                generateTraps(row, col);
+                startTimer();
+            }
+            
+            // 揭示单元格
+            revealCell(row, col);
+            
+            // 检查是否踩中陷阱
+            if (cell.isTrap) {
+                gameOver = true;
+                clearInterval(timerInterval);
+                revealAllTraps();
+                gameMessageElement.textContent = '游戏失败！小老鼠踩到了捕兽夹！';
+                gameMessageElement.className = 'game-message lose';
+                
+                // 显示失败动画和再来一局按钮
+                setTimeout(() => {
+                    defeatAnimation.classList.add('show');
+                    playAgainButtonDefeat.style.display = 'block';
+                }, 500);
+                return;
+            }
+            
+            // 检查是否胜利
+            checkWinCondition();
+        }
+        
+        // 计算相邻标记数量
+        function countAdjacentFlags(row, col) {
+            let count = 0;
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    const newRow = row + i;
+                    const newCol = col + j;
+                    if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
+                        if (gameBoard[newRow][newCol].isFlagged) {
+                            count++;
+                        }
+                    }
+                }
+            }
+            return count;
+        }
+        
+        // 揭示相邻单元格
+        function revealAdjacentCells(row, col) {
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    const newRow = row + i;
+                    const newCol = col + j;
+                    if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
+                        const adjacentCell = gameBoard[newRow][newCol];
+                        if (!adjacentCell.isRevealed && !adjacentCell.isFlagged) {
+                            revealCell(newRow, newCol);
+                            // 检查是否踩中陷阱
+                            if (adjacentCell.isTrap) {
+                                gameOver = true;
+                                clearInterval(timerInterval);
+                                revealAllTraps();
+                                gameMessageElement.textContent = '游戏失败！小老鼠踩到了捕兽夹！';
+                                gameMessageElement.className = 'game-message lose';
+                                
+                                // 显示失败动画和再来一局按钮
+                                setTimeout(() => {
+                                    defeatAnimation.classList.add('show');
+                                    playAgainButtonDefeat.style.display = 'block';
+                                }, 500);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 处理单元格右键点击
+        function handleCellRightClick(e) {
+            e.preventDefault(); // 阻止右键菜单
+            
+            // 确保获取到单元格元素，即使点击的是单元格内的子元素
+            const cellElement = e.target.closest('.game-cell');
+            if (!cellElement) return;
+            
+            const row = parseInt(cellElement.dataset.row);
+            const col = parseInt(cellElement.dataset.col);
+            const cell = gameBoard[row][col];
+            
+            // 如果游戏结束或单元格已揭示，不做处理
+            if (gameOver || cell.isRevealed) {
+                return;
+            }
+            
+            // 如果是第一次点击，开始游戏
+            if (!gameStarted) {
+                gameStarted = true;
+                generateTraps(row, col);
+                startTimer();
+            }
+            
+            // 切换标记状态
+            toggleFlag(row, col);
+        }
+        
+        // 切换标记状态
+        function toggleFlag(row, col) {
+            const cell = gameBoard[row][col];
+            const cellElement = document.querySelector(`.game-cell[data-row="${row}"][data-col="${col}"]`);
+            
+            if (cell.isFlagged) {
+                cell.isFlagged = false;
+                flaggedCells--;
+                cellElement.classList.remove('flagged');
+                cellElement.innerHTML = '';
+            } else {
+                cell.isFlagged = true;
+                flaggedCells++;
+                cellElement.classList.add('flagged');
+                cellElement.innerHTML = '<div class="flag"></div>';
+                // 播放标记音效
+                playFlagSound();
+            }
+            
+            // 更新剩余陷阱计数
+            mineCountElement.textContent = totalTraps - flaggedCells;
+        }
+        
+        // 揭示单元格
+        function revealCell(row, col) {
+            const cell = gameBoard[row][col];
+            const cellElement = document.querySelector(`.game-cell[data-row="${row}"][data-col="${col}"]`);
+            
+            // 如果单元格已揭示、已标记或游戏结束，不做处理
+            if (cell.isRevealed || cell.isFlagged || gameOver) {
+                return;
+            }
+            
+            // 标记为已揭示
+            cell.isRevealed = true;
+            revealedCells++;
+            cellElement.classList.add('revealed');
+            
+            // 显示内容
+            if (cell.isTrap) {
+                cellElement.innerHTML = '<div class="trap"><span></span></div>';
+                // 播放踩雷音效
+                playTrapSound();
+            } else if (cell.adjacentTraps > 0) {
+                cellElement.innerHTML = `<div class="number number-${cell.adjacentTraps}">${cell.adjacentTraps}</div>`;
+                // 播放数字音效
+                playNumberSound(cell.adjacentTraps);
+            } else {
+                // 空白单元格，自动展开周围单元格
+                cellElement.innerHTML = '<div class="cheese"></div>';
+                
+                // 递归揭示周围单元格
+                for (let i = -1; i <= 1; i++) {
+                    for (let j = -1; j <= 1; j++) {
+                        const newRow = row + i;
+                        const newCol = col + j;
+                        
+                        if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
+                            revealCell(newRow, newCol);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 揭示所有陷阱
+        function revealAllTraps() {
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    const cell = gameBoard[i][j];
+                    if (cell.isTrap) {
+                        const cellElement = document.querySelector(`.game-cell[data-row="${i}"][data-col="${j}"]`);
+                        cellElement.classList.add('revealed');
+                        cellElement.innerHTML = '<div class="trap"><span></span></div>';
+                    }
+                }
+            }
+        }
+        
+        // 检查胜利条件
+        function checkWinCondition() {
+            const totalCells = rows * cols;
+            const safeCells = totalCells - totalTraps;
+            
+            if (revealedCells === safeCells) {
+                gameOver = true;
+                clearInterval(timerInterval);
+                gameMessageElement.textContent = '游戏胜利！小老鼠成功找到了奶酪！';
+                gameMessageElement.className = 'game-message win';
+                
+                // 保存游戏记录
+                saveGameRecord();
+                
+                // 播放胜利音效
+                playWinSound();
+                
+                // 显示胜利动画
+                setTimeout(() => {
+                    victoryAnimation.classList.add('show');
+                    // 初始化胜利动画
+                    initVictoryAnimation();
+                }, 500);
+            }
+        }
+        
+        // 保存游戏记录
+        function saveGameRecord() {
+            // 确定当前难度
+            let currentDifficulty = 'beginner';
+            if (rows === 16 && cols === 16) currentDifficulty = 'intermediate';
+            else if (rows === 16 && cols === 30) currentDifficulty = 'expert';
+            else if (rows === 24 && cols === 32) currentDifficulty = 'nightmare';
+            
+            // 更新记录
+            if (timeElapsed < gameRecords[currentDifficulty]) {
+                gameRecords[currentDifficulty] = timeElapsed;
+                localStorage.setItem('mouseCheeseRecords', JSON.stringify(gameRecords));
+            }
+            
+            // 显示记录
+            displayGameRecords();
+        }
+        
+        // 显示游戏记录
+        function displayGameRecords() {
+            // 确保游戏记录对象的所有属性都有值
+            gameRecords = {
+                beginner: gameRecords.beginner || Infinity,
+                intermediate: gameRecords.intermediate || Infinity,
+                expert: gameRecords.expert || Infinity,
+                nightmare: gameRecords.nightmare || Infinity
+            };
+            
+            gameRecordsElement.innerHTML = `
+                <h3>成功记录</h3>
+                <div class="record-item">
+                    <span class="record-difficulty">【初级】</span>
+                    <span class="record-time">${gameRecords.beginner === Infinity ? '暂无记录' : gameRecords.beginner + '秒'}${gameRecords.beginner !== Infinity ? '<span class="crown">👑</span>' : ''}</span>
+                </div>
+                <div class="record-item">
+                    <span class="record-difficulty">【中级】</span>
+                    <span class="record-time">${gameRecords.intermediate === Infinity ? '暂无记录' : gameRecords.intermediate + '秒'}${gameRecords.intermediate !== Infinity ? '<span class="crown">👑</span>' : ''}</span>
+                </div>
+                <div class="record-item">
+                    <span class="record-difficulty">【高级】</span>
+                    <span class="record-time">${gameRecords.expert === Infinity ? '暂无记录' : gameRecords.expert + '秒'}${gameRecords.expert !== Infinity ? '<span class="crown">👑</span>' : ''}</span>
+                </div>
+                <div class="record-item">
+                    <span class="record-difficulty">【极难】</span>
+                    <span class="record-time">${gameRecords.nightmare === Infinity ? '暂无记录' : gameRecords.nightmare + '秒'}${gameRecords.nightmare !== Infinity ? '<span class="crown">👑</span>' : ''}</span>
+                </div>
+            `;
+        }
+        
+        // 初始化胜利动画
+        function initVictoryAnimation() {
+            const playAgainButton = document.getElementById('play-again-btn');
+            const gameResultElement = victoryAnimation.querySelector('.game-result');
+            
+            // 确定当前难度
+            let currentDifficulty = 'beginner';
+            if (rows === 16 && cols === 16) currentDifficulty = 'intermediate';
+            else if (rows === 16 && cols === 30) currentDifficulty = 'expert';
+            else if (rows === 24 && cols === 32) currentDifficulty = 'nightmare';
+            
+            // 检查是否刷新了记录
+            const isNewRecord = timeElapsed < gameRecords[currentDifficulty];
+            
+            // 显示成绩
+            gameResultElement.innerHTML = `成绩：${timeElapsed}秒${isNewRecord ? ' <span class="crown">👑</span>' : ''}`;
+            
+            // 显示再来一局按钮
+            setTimeout(() => {
+                playAgainButton.style.display = 'block';
+            }, 2000);
+            
+            // 生成粒子爆炸效果
+            createParticles();
+        }
+        
+        // 创建粒子爆炸效果
+        function createParticles() {
+            const particleCount = 18; // 15-20个粒子
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // 随机角度和距离
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const distance = Math.random() * 200 + 100;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                // 设置粒子样式
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                
+                // 随机颜色（金色或白色）
+                if (Math.random() > 0.5) {
+                    particle.style.backgroundColor = '#ffd700'; // 金色
+                } else {
+                    particle.style.backgroundColor = '#ffffff'; // 白色
+                }
+                
+                // 添加到文档
+                document.body.appendChild(particle);
+                
+                // 动画结束后移除粒子
+                setTimeout(() => {
+                    particle.remove();
+                }, 2000);
+            }
+        }
+        
+
+        
+        // 开始计时器
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeElapsed++;
+                timerElement.textContent = timeElapsed;
+            }, 1000);
+        }
+        
+        // 设置难度
+        function setDifficulty(difficulty) {
+            switch (difficulty) {
+                case 'beginner':
+                    rows = 9;
+                    cols = 9;
+                    totalTraps = 10;
+                    break;
+                case 'intermediate':
+                    rows = 16;
+                    cols = 16;
+                    totalTraps = 40;
+                    break;
+                case 'expert':
+                    rows = 16;
+                    cols = 30;
+                    totalTraps = 99;
+                    break;
+                case 'nightmare':
+                    rows = 24;
+                    cols = 32;
+                    totalTraps = 190;
+                    break;
+            }
+            
+            // 更新难度按钮状态
+            difficultyButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(difficulty).classList.add('active');
+            
+            // 重新初始化游戏
+            initGame();
+        }
+        
+        // 事件监听器
+        resetButton.addEventListener('click', initGame);
+        
+        playAgainButton.addEventListener('click', () => {
+            victoryAnimation.classList.remove('show');
+            initGame();
+        });
+        
+        playAgainButtonDefeat.addEventListener('click', () => {
+            defeatAnimation.classList.remove('show');
+            initGame();
+        });
+        
+        difficultyButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setDifficulty(btn.id);
+            });
+        });
+        
+        // 初始化游戏
+        initGame();
+        
+        // 默认选择初级难度
+        document.getElementById('beginner').classList.add('active');
+    </script>
+</body>
+</html>
